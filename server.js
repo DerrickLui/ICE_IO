@@ -19,9 +19,13 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, 'src')));
 
 // Fallback to index.html (for SPA / Godot routing safety)
-// Optimized for Express 5 regex requirements
-app.get(/.*$/, (req, res) => {
-    res.sendFile(path.join(__dirname, 'src', 'index.html'));
+// Uses middleware to bypass path-to-regexp wildcard syntax changes in Express 5
+app.use((req, res, next) => {
+    if (req.method === 'GET' && req.accepts('html')) {
+        res.sendFile(path.join(__dirname, 'src', 'index.html'));
+    } else {
+        next();
+    }
 });
 
 app.listen(PORT, () => {

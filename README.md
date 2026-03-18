@@ -5,7 +5,7 @@ This is a simple Node.js server powered by Express, specifically configured to s
 ## Features
 - **Godot 4 Support:** Includes mandatory `Cross-Origin-Opener-Policy: same-origin` and `Cross-Origin-Embedder-Policy: require-corp` headers to enable `SharedArrayBuffer` support.
 - **SPA Fallback:** All non-static routes fall back to `index.html` to support client-side routing.
-- **Express 5 Compatible:** Uses the latest Express 5 features and path-to-regexp syntax.
+- **Express 5 Compatible:** Uses Express middleware for SPA fallback, avoiding path-to-regexp syntax breaks across versions.
 
 ## Prerequisites
 - Node.js (v18 or later recommended)
