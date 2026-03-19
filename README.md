@@ -4,6 +4,7 @@ This is a simple Node.js server powered by Express, specifically configured to s
 
 ## Features
 - **Godot 4 Support:** Includes mandatory `Cross-Origin-Opener-Policy: same-origin` and `Cross-Origin-Embedder-Policy: require-corp` headers to enable `SharedArrayBuffer` support.
+- **Render Audio Fix:** Enforces strict MIME typing (`application/javascript` for `.js`, `application/wasm` for `.wasm`, `application/octet-stream` for `.pck`) and disables caching for AudioWorklets (`no-cache`) directly via `express.static` headers. This prevents sound breakage upon Render deployment due to stale caches or missing Content-Types.
 - **SPA Fallback:** All non-static routes fall back to `index.html` to support client-side routing.
 - **Express 5 Compatible:** Uses Express middleware for SPA fallback, avoiding path-to-regexp syntax breaks across versions.
 
